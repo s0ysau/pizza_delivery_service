@@ -1,0 +1,62 @@
+import time
+pizza_list = ["Margherita", "Hawaiian", "Four Cheese", "Peperoni", "Grandma", "Vegetarian"]
+cart = []
+
+print("Hello! Here are the available pizzas:")
+for i, pizza in enumerate(pizza_list):
+    print(str(i+1)+". "+ pizza)
+    
+time.sleep(0.5)
+
+continue_order = True
+while continue_order:
+    
+    yes_no = input("Would you like to place an order? (yes/no) ")
+    if yes_no == "yes":
+        
+        valid_pizza_choice = False
+        while not valid_pizza_choice:
+            
+            order = int(input ("Please choose what type of pizza you would like by number: "))
+            
+            if (order > 0) and (order <= len(pizza_list)):
+                cart.append(pizza_list[order-1])
+                print("Ok you placed an order for a "+ str(cart) + " pizza.")
+                valid_pizza_choice = True
+                time.sleep(0.5)
+                
+            else:
+                print("Sorry, please choose a correct number. ")
+                time.sleep(0.5)            
+    else:
+        break
+
+time.sleep(1)
+
+if len(cart) == 1:
+    print("You have placed an order for 1 pizza pie:")
+    print(cart)
+else:
+    print("You have placed an order for "+ str(len(cart))+ " pizza pies:")
+    print(cart)
+
+time.sleep(1)
+
+subtotal = int(len(cart)) * 10
+print("Your total is $"+ str(subtotal))
+
+time.sleep(1)
+
+valid_tip = False
+while not valid_tip:
+
+    tip = float(input("Would you like to tip? (0-25%) "))
+    if (tip >= 0) and (tip <= 25):
+        valid_tip = True
+        subtotal += subtotal * tip / 100
+        print("Thank you for your order!")
+        print("Your grand total is $" + str(subtotal)+".")
+        
+    else:
+        print("Please provide correct number. ")
+
